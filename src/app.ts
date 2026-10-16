@@ -30,6 +30,7 @@ export default async function (fastify : FastifyInstance, opts : FastifyPluginOp
   fastify.register(AutoLoad, {
     dir: path.join(__dirname, 'routes'),
     options: Object.assign({}, opts),
-    autoHooks: true
+    autoHooks: true,
+    cascadeHooks: true
   })
 }
