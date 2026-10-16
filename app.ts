@@ -1,6 +1,10 @@
 import path from 'node:path'
 import AutoLoad from '@fastify/autoload'
 import { fileURLToPath } from 'node:url'
+import type {
+  FastifyInstance,
+  FastifyPluginOptions,
+} from 'fastify'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -8,7 +12,7 @@ const __dirname = path.dirname(__filename)
 // Pass --options via CLI arguments in command to enable these options.
 export const options = {}
 
-export default async function (fastify, opts) {
+export default async function (fastify : FastifyInstance, opts : FastifyPluginOptions) {
   // Place here your custom code!
 
   // Do not touch the following lines

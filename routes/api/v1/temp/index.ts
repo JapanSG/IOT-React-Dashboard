@@ -1,4 +1,6 @@
-export default async function (fastify, opts) {
+import type {FastifyPluginAsync} from 'fastify'
+
+const route : FastifyPluginAsync = async (fastify, opts) => {
   fastify.get('/', async function (request, reply) {
     return 'temp'
   });
@@ -7,3 +9,6 @@ export default async function (fastify, opts) {
     return 'temp'
   });
 }
+
+export default route
+
