@@ -1,36 +1,20 @@
-import path from 'node:path'
-import AutoLoad from '@fastify/autoload'
-import { fileURLToPath } from 'node:url'
-import type {
-  FastifyInstance,
-  FastifyPluginOptions,
-} from 'fastify'
+import Fastify from 'fastify'
+import { apiV1 } from './controllers/api.js'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const fastify = Fastify({
+  logger: true // Enables the built-in pino logger
+});
 
-// Pass --options via CLI arguments in command to enable these options.
-export const options = {}
+fastify.get('/', async (request, reply) => {
+  return { message: 'Welcome to the Fastify API!' };
+});
 
-export default async function (fastify : FastifyInstance, opts : FastifyPluginOptions) {
-  // Place here your custom code!
+fastify.register(apiV1, {});
 
-  // Do not touch the following lines
-
-  // This loads all plugins defined in plugins
-  // those should be support plugins that are reused
-  // through your application
-  fastify.register(AutoLoad, {
-    dir: path.join(__dirname, 'plugins'),
-    options: Object.assign({}, opts)
-  })
-
-  // This loads all plugins defined in routes
-  // define your routes in one of these
-  fastify.register(AutoLoad, {
-    dir: path.join(__dirname, 'routes'),
-    options: Object.assign({}, opts),
-    autoHooks: true,
-    cascadeHooks: true
-  })
+try {
+  await fastify.listen({ port: 3000, host: '0.0.0.0' });
+}
+catch (err) {
+  fastify.log.error(err);
+  process.exit(1);
 }

@@ -4,13 +4,9 @@ WORKDIR /app
 
 COPY ./package*.json .
 
+COPY ./src ./src
+
 RUN npm install
-
-COPY ./plugins ./plugins
-
-COPY ./routes ./routes
-
-COPY app.js .
 
 EXPOSE 3000
 

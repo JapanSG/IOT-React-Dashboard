@@ -1,35 +1,36 @@
 {
-  "type": "module",
   "name": "iot-react-dashboard",
   "version": "1.0.0",
   "description": "This project was bootstrapped with Fastify-CLI.",
-  "main": "./src/app.js",
-  "directories": {
-    "test": "test"
-  },
+  "main": "index.js",
   "scripts": {
-    "test": "node --test test/**/*.test.js",
-    "start": "fastify start -l info ./dist/app.ts",
-    "dev": "fastify start -t -w -l info -P ./src/app.ts",
-    "build": "tsc"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "tsx watch --env-file=.env src/app.ts",
+    "build": "npx tsc",
+    "start": "npx node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JapanSG/IOT-React-Dashboard.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/JapanSG/IOT-React-Dashboard/issues"
+  },
+  "homepage": "https://github.com/JapanSG/IOT-React-Dashboard#readme",
   "dependencies": {
-    "@fastify/auth": "^5.1.2",
-    "@fastify/autoload": "^6.0.0",
     "@fastify/bearer-auth": "^10.1.4",
-    "@fastify/postgres": "^6.1.1",
-    "@fastify/sensible": "^6.0.0",
     "@types/node": "^26.6.5",
-    "fastify": "^5.0.0",
-    "fastify-cli": "^7.4.1",
-    "fastify-plugin": "^5.0.0",
+    "drizzle-kit": "^0.31.11",
+    "drizzle-orm": "^0.45.4",
+    "fastify": "^5.12.7",
     "pg": "^8.23.1",
     "typescript": "^7.0.2"
   },
   "devDependencies": {
-    "c8": "^10.1.2"
+    "tsx": "^4.23.15"
   }
 }
