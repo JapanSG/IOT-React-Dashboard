@@ -14,7 +14,11 @@ const tempRoutes : FastifyPluginAsync = async (fastify, options) => {
   });
 
   fastify.withTypeProvider<ZodTypeProvider>().post('/temp', { schema: { body: addTempSchema } }, async (request, reply) => {
-    const {value, unit}  = request.body;
+    let {value, unit}  = request.body;
+    if (unit == 'F') {
+      // Convert Fahrenheit to Celsius
+      value = (value - 32) * 5 / 9;
+    }
     const newTemperature = await addTemperature(value, unit);
     return newTemperature;
   });

@@ -8,6 +8,6 @@ export const getTemperatures = async (num: number) => {
 }
 
 export const addTemperature = async (value: number, unit: string) => {
-  const result = await db.insert(temperatures).values({ value, unit }).returning();
+  const result = await db.insert(temperatures).values({value}).returning();
   return result;
 }
