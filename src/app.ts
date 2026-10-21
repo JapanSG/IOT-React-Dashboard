@@ -30,6 +30,7 @@ new Device().run();
 if (process.env.NODE_ENV !== 'production'){
   try {
     await fastify.listen({ port: 3000, host: '0.0.0.0' });
+        console.log("start on 3000")
   }
   catch (err) {
     fastify.log.error(err);
@@ -39,6 +40,7 @@ if (process.env.NODE_ENV !== 'production'){
 else {
   try {
     await fastify.listen({ port: 443, host: '0.0.0.0' });
+    console.log("start on 443")
   }
   catch (err) {
     fastify.log.error(err);
