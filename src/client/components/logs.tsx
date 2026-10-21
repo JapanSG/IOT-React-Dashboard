@@ -37,8 +37,8 @@ function LogEntry({ type, id, value, created_at} : LogProps) {
 }
 
 export default function Logs({timeProp, minuteProp} : LogsProps) {
-  const [time, setTime] = useState(5000);
-  const [lastMinutes, setLastMinutes] = useState(15);
+  const [time, setTime] = useState(timeProp);
+  const [lastMinutes, setLastMinutes] = useState(minuteProp);
   // setTime(timeProp);
   // setLastMinutes(minuteProp);
   const [temps, setTemps] = useState(new Array<FetchShape>());
@@ -77,12 +77,13 @@ export default function Logs({timeProp, minuteProp} : LogsProps) {
     };
   }, []);
   return (
-    <>
+    <div>
+      <p>{lastMinutes}, {time}</p>
       <div>
         <h3>Temperature Logs</h3>
         <div>
           {temps.map((item) => {
-            return <LogEntry type="temperature" id={item.id} value={item.value} created_at={item.created_at}></LogEntry>;
+            return <LogEntry key={item.id} type="temperature" id={item.id} value={item.value} created_at={item.created_at}></LogEntry>;
           })}
         </div>
       </div>
@@ -90,10 +91,10 @@ export default function Logs({timeProp, minuteProp} : LogsProps) {
         <h3>Humidity Logs</h3>
         <div>
           {humids.map((item) => {
-            return <LogEntry type="humidity" id={item.id} value={item.value} created_at={item.created_at}></LogEntry>;
+            return <LogEntry key={item.id} type="humidity" id={item.id} value={item.value} created_at={item.created_at}></LogEntry>;
           })}
         </div>
       </div>
-    </>
+    </div>
   )
 }

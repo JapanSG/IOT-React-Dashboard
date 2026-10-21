@@ -1,0 +1,1 @@
+This folder is for simulating IOT devices sending data to this API. 

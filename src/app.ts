@@ -1,8 +1,8 @@
 import Fastify from 'fastify'
 import FastifyVite from '@fastify/vite'
 import { resolve } from 'node:path';
+import Device from './simulate/device.js'
 import { apiV1 } from './controllers/api.js'
-
 
 const fastify = Fastify({
   logger: true // Enables the built-in pino logger
@@ -17,7 +17,6 @@ await fastify.register(FastifyVite, {
 
 console.log(resolve(import.meta.dirname, '..'));
 
-
 fastify.get('/', async (request, reply) => {
   return reply.html();
 });
@@ -25,6 +24,8 @@ fastify.get('/', async (request, reply) => {
 fastify.register(apiV1, {});
 
 await fastify.vite.ready();
+
+new Device().run();
 
 try {
   await fastify.listen({ port: 3000, host: '0.0.0.0' });
