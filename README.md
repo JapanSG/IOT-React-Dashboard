@@ -105,8 +105,9 @@ npm start
 
 ## Deploy to Vercel
 
-Vercel detects `src/app.ts` as the Fastify entrypoint and runs `npm run build`
-to generate the Vite production bundle. Set `DATABASE_URL` and `AUTH_TOKEN` in
-the Vercel project environment variables. The simulator is not started by the
-serverless function; sensor data must be provided by a persistent device or
-another scheduled process.
+Vercel uses the Vite framework preset to serve the generated `dist/client`
+bundle and sends `/api/*` requests to the Fastify function. That function
+includes the generated `dist` files required by `@fastify/vite`. Set
+`DATABASE_URL` and `AUTH_TOKEN` in the Vercel project environment variables.
+The simulator is not started by the serverless function; sensor data must be
+provided by a persistent device or another scheduled process.
