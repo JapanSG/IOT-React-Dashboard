@@ -1,3 +1,6 @@
+# Site HERE
+https://iot-react-dashboard-sigma.vercel.app
+
 # IoT React Dashboard
 
 A small full-stack IoT dashboard that displays simulated DHT11 temperature and humidity readings. The React single-page app plots the latest readings and polls the API every five seconds. Charts use fixed scales of **23–40 °C** and **15–95%**.
@@ -111,3 +114,4 @@ bundle and routes sensor API requests to Fastify at `/api/v1/temp` and
 supported. Set `DATABASE_URL` and `AUTH_TOKEN` in the Vercel project environment
 variables. The simulator is not started by the serverless function; sensor data
 must be provided by a persistent device or another scheduled process.
+
