@@ -10,6 +10,8 @@ interface MetricChartProps {
   title: string;
   unit: string;
   readings: Reading[];
+  minimum: number;
+  maximum: number;
 }
 
 const chartWidth = 640;
@@ -40,19 +42,13 @@ async function fetchReadings(endpoint: string): Promise<Reading[]> {
     .slice(-30);
 }
 
-function MetricChart({ title, unit, readings }: MetricChartProps) {
-  const values = readings.map((reading) => reading.value);
-  const minimum = values.length ? Math.min(...values) : 0;
-  const maximum = values.length ? Math.max(...values) : 1;
-  const padding = maximum === minimum ? Math.max(Math.abs(maximum) * 0.08, 1) : (maximum - minimum) * 0.15;
-  const domainMinimum = minimum - padding;
-  const domainMaximum = maximum + padding;
+function MetricChart({ title, unit, readings, minimum, maximum }: MetricChartProps) {
   const x = (index: number) =>
     readings.length === 1
       ? (plot.left + plot.right) / 2
       : plot.left + (index / (readings.length - 1)) * (plot.right - plot.left);
   const y = (value: number) =>
-    plot.bottom - ((value - domainMinimum) / (domainMaximum - domainMinimum)) * (plot.bottom - plot.top);
+    plot.bottom - ((value - minimum) / (maximum - minimum)) * (plot.bottom - plot.top);
   const path = readings
     .map((reading, index) => `${index === 0 ? "M" : "L"} ${x(index)} ${y(reading.value)}`)
     .join(" ");
@@ -79,7 +75,7 @@ function MetricChart({ title, unit, readings }: MetricChartProps) {
           >
             {[0, 1, 2, 3].map((step) => {
               const tickY = plot.top + (step / 3) * (plot.bottom - plot.top);
-              const tickValue = domainMaximum - (step / 3) * (domainMaximum - domainMinimum);
+              const tickValue = maximum - (step / 3) * (maximum - minimum);
               return (
                 <g key={step}>
                   <line className="chart-gridline" x1={plot.left} x2={plot.right} y1={tickY} y2={tickY} />
@@ -167,8 +163,8 @@ export function ChartLineLinear() {
         <span className="dashboard__interval">Refreshes every 5 seconds</span>
       </div>
       <div className="metric-grid">
-        <MetricChart title="Temperature" unit="°C" readings={temperatures} />
-        <MetricChart title="Humidity" unit="%" readings={humidity} />
+        <MetricChart title="Temperature" unit="°C" readings={temperatures} minimum={23} maximum={40} />
+        <MetricChart title="Humidity" unit="%" readings={humidity} minimum={15} maximum={95} />
       </div>
     </section>
   );

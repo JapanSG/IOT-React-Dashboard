@@ -1,5 +1,3 @@
-const URL = "http"
-
 function getRand(min: number, max: number) {
   return Math.random() * (max - min) + min
 }
@@ -26,13 +24,13 @@ export default class Device {
   private tick() {
     let tempFactor : Array<number>;
     let humidFactor : Array<number>;
-    if (this.weather == 0){
+    if (this.weather == 0) {
       tempFactor = [-1, 1.6]
       humidFactor = [-1.2, 1]
     }
     else if (this.weather == 1) {
       tempFactor = [-1.2, 1];
-      humidFactor = [0, 1.5];
+      humidFactor = [0, 1.2];
     }
     else if (this.weather === 2) {
       tempFactor = [-1.2, 1.2]
