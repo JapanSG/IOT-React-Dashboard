@@ -17,7 +17,8 @@ fastify.get('/', async (request, reply) => {
   return reply.html()
 })
 
-fastify.register(apiV1, {})
+fastify.register(apiV1, { prefix: '/api/v1' })
+fastify.register(apiV1, { prefix: '/api' })
 
 await fastify.vite.ready()
 await fastify.ready()

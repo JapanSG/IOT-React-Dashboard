@@ -4,9 +4,6 @@ import bearerAuth from "@fastify/bearer-auth"
 import privateAPI from "./apis/private/privateAPI.js"
 
 export const apiV1 : FastifyPluginAsync = async (fastify, options) => {
-
-  const prefix = "/api/v1";
-
-  fastify.register(publicAPI, {prefix});
-  fastify.register(privateAPI, {prefix});
+  fastify.register(publicAPI);
+  fastify.register(privateAPI);
 }

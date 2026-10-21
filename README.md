@@ -106,8 +106,8 @@ npm start
 ## Deploy to Vercel
 
 Vercel uses the Vite framework preset to serve the generated `dist/client`
-bundle and sends `/api/*` requests to the Fastify function. That function
-includes the generated `dist` files required by `@fastify/vite`. Set
-`DATABASE_URL` and `AUTH_TOKEN` in the Vercel project environment variables.
-The simulator is not started by the serverless function; sensor data must be
-provided by a persistent device or another scheduled process.
+bundle and routes sensor API requests to Fastify at `/api/v1/temp` and
+`/api/v1/humidity`. The shorter `/api/temp` and `/api/humidity` paths are also
+supported. Set `DATABASE_URL` and `AUTH_TOKEN` in the Vercel project environment
+variables. The simulator is not started by the serverless function; sensor data
+must be provided by a persistent device or another scheduled process.
