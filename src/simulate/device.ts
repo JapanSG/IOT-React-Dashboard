@@ -99,7 +99,7 @@ export default class Device {
   }
 
   public run() {
-    setInterval(this.tick.bind(this), 1000);
-    setInterval(this.sendData.bind(this), 2000);
+    setInterval(this.tick.bind(this), 3000);
+    setInterval(this.sendData.bind(this), 5000);
   }
 }
