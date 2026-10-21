@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch --env-file=.env src/app.ts",
-    "build": "npx tsc",
+    "build": "npx tsc && vite build",
     "start": "npx node dist/app.js"
   },
   "repository": {
@@ -23,16 +23,24 @@
   "homepage": "https://github.com/JapanSG/IOT-React-Dashboard#readme",
   "dependencies": {
     "@fastify/bearer-auth": "^10.1.4",
+    "@fastify/react": "^1.2.2",
     "@fastify/type-provider-zod": "^1.0.1",
+    "@fastify/vite": "^10.0.0",
     "@types/node": "^26.6.5",
+    "@vitejs/plugin-react": "^6.1.2",
     "drizzle-kit": "^0.31.11",
     "drizzle-orm": "^0.45.4",
     "fastify": "^5.12.7",
     "pg": "^8.23.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "typescript": "^7.0.2",
     "zod": "^4.6.7"
   },
   "devDependencies": {
-    "tsx": "^4.23.15"
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.23.15",
+    "vite": "^8.3.4"
   }
 }

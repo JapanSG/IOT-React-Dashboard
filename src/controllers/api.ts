@@ -1,6 +1,7 @@
 import type { FastifyPluginAsync } from "fastify"
 import temp from "./apis/temp.js"
 import bearerAuth from "@fastify/bearer-auth"
+import humidity from "./apis/humidity.js"
 
 export const apiV1 : FastifyPluginAsync = async (fastify, options) => {
   const authToken = process.env.AUTH_TOKEN
@@ -16,4 +17,5 @@ export const apiV1 : FastifyPluginAsync = async (fastify, options) => {
   });
 
   fastify.register(temp, {prefix});
+  fastify.register(humidity, {prefix});
 }

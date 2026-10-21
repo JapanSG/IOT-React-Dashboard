@@ -6,5 +6,5 @@ export const addTempSchema = z.object({
 });
 
 export const getTempSchema = z.object({
-  num: z.number().min(1).max(100).optional(),
+  num: z.number().min(-100).max(100).optional(),
 });

@@ -14,3 +14,5 @@ export const humidity = pgTable("humidity", {
 
 export type Temperature = typeof temperatures.$inferSelect;
 export type NewTemperature = typeof temperatures.$inferInsert;
+export type Humidity = typeof humidity.$inferSelect;
+export type NewHumidity = typeof humidity.$inferInsert

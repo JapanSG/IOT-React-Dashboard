@@ -1,6 +1,6 @@
 import type {FastifyPluginAsync} from 'fastify';
-import {getTemperatures, addTemperature} from '../../services/temps.js';
 import { type ZodTypeProvider, serializerCompiler, validatorCompiler } from '@fastify/type-provider-zod'
+import {getTemperatures, addTemperature} from '../../services/temps.js';
 import {addTempSchema, getTempSchema} from '../../schemas/temp.js';
 
 const tempRoutes : FastifyPluginAsync = async (fastify, options) => {
