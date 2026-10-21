@@ -1,6 +1,7 @@
 import argparse
 import requests
 import sys
+import random
 
 def send_post_request(base_url, endpoint, token, payload):
     url = f"{base_url.rstrip('/')}{endpoint}"
@@ -25,8 +26,8 @@ def main():
     args = parser.parse_args()
 
     # Sample data to send (modify values as needed)
-    temp_payload = {"temperature": 22.5, "unit": "Celsius"}
-    humidity_payload = {"humidity": 55.0, "unit": "percent"}
+    temp_payload = {"value": random.uniform(25, 40), "unit": "C"}
+    humidity_payload = {"value": random.uniform(30, 70)}
 
     print("--- Sending Temperature Data ---")
     send_post_request(args.url, "/api/v1/temp", args.token, temp_payload)
