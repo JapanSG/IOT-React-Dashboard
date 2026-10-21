@@ -106,9 +106,10 @@ npm start
 ## Deploy to Vercel
 
 Vercel uses `npm run build`, serves the generated `dist/client` bundle, and
-routes `/api/*` requests through the Fastify function. The function includes
-the generated `dist` files so `@fastify/vite` can load its production
-configuration. Set `DATABASE_URL` and `AUTH_TOKEN` in the Vercel project
-environment variables. The simulator is not started by the serverless function;
-sensor data must be provided by a persistent device or another scheduled
-process.
+the Vite framework preset, and routes `/api/*` requests through the Fastify
+function. The preset is set explicitly because the project also has a Fastify
+server entrypoint. The function includes the generated `dist` files so
+`@fastify/vite` can load its production configuration. Set `DATABASE_URL` and
+`AUTH_TOKEN` in the Vercel project environment variables. The simulator is not
+started by the serverless function; sensor data must be provided by a persistent
+device or another scheduled process.
