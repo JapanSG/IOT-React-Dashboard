@@ -2,6 +2,7 @@ import argparse
 import requests
 import sys
 import random
+import time
 
 def send_post_request(base_url, endpoint, token, payload):
     url = f"{base_url.rstrip('/')}{endpoint}"
@@ -21,19 +22,21 @@ def send_post_request(base_url, endpoint, token, payload):
 def main():
     parser = argparse.ArgumentParser(description="Send temperature and humidity POST requests with a Bearer Token.")
     parser.add_argument("--token", required=True, help="Bearer Token for authentication")
-    parser.add_argument("--url", default="https://api.example.com", help="Base URL of the server (default: https://api.example.com)")
+    parser.add_argument("--url", default="https://iot-react-dashboard-sigma.vercel.app", help="Base URL of the server (default: https://api.example.com)")
     
     args = parser.parse_args()
 
     # Sample data to send (modify values as needed)
-    temp_payload = {"value": random.uniform(25, 40), "unit": "C"}
-    humidity_payload = {"value": random.uniform(30, 70)}
+    while True:
+      temp_payload = {"value": random.uniform(25, 40), "unit": "C"}
+      humidity_payload = {"value": random.uniform(30, 70)}
 
-    print("--- Sending Temperature Data ---")
-    send_post_request(args.url, "/api/v1/temp", args.token, temp_payload)
+      print("--- Sending Temperature Data ---")
+      send_post_request(args.url, "/api/v1/temp", args.token, temp_payload)
 
-    print("--- Sending Humidity Data ---")
-    send_post_request(args.url, "/api/v1/humidity", args.token, humidity_payload)
+      print("--- Sending Humidity Data ---")
+      send_post_request(args.url, "/api/v1/humidity", args.token, humidity_payload)
+      time.sleep(5)
 
 if __name__ == "__main__":
     main()
