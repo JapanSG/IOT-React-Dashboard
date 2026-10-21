@@ -1,9 +1,13 @@
 import db from '../db/db.js';
-import { desc } from 'drizzle-orm';
+import { desc , gte, sql} from 'drizzle-orm';
 import { humidity } from '../db/schema.js';
 
-export const getHumidity = async (num: number) => {
-  const result = await db.select().from(humidity).orderBy(desc(humidity.created_at)).limit(num);
+export const getHumidity = async (minute: number) => {
+  const result = await
+  db.select()
+  .from(humidity)
+  .where(gte(humidity.created_at, sql`now() - ${minute} * interval '1 minute'`))
+  .orderBy(desc(humidity.created_at));
   return result;
 }
 

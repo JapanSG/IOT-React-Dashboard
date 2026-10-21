@@ -1,9 +1,13 @@
 import db from '../db/db.js';
-import { desc } from 'drizzle-orm';
+import { desc, gte, sql } from 'drizzle-orm';
 import { temperatures } from '../db/schema.js';
 
-export const getTemperatures = async (num: number) => {
-  const result = await db.select().from(temperatures).orderBy(desc(temperatures.created_at)).limit(num);
+export const getTemperatures = async (minute: number) => {
+  const result = await 
+  db.select()
+  .from(temperatures)
+  .where(gte(temperatures.created_at, sql`now() - ${minute} * interval '1 minute'`))
+  .orderBy(desc(temperatures.created_at));
   return result;
 }
 

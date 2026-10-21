@@ -5,5 +5,5 @@ export const addHumidSchema = z.object({
 });
 
 export const getHumidSchema = z.object({
-  num: z.number().min(0).max(100).optional(),
+  minute: z.coerce.number().min(0).optional(),
 });
