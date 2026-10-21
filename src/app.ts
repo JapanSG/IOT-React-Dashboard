@@ -27,10 +27,21 @@ await fastify.vite.ready();
 
 new Device().run();
 
-try {
-  await fastify.listen({ port: 3000, host: '0.0.0.0' });
+if (process.env.NODE_ENV !== 'production'){
+  try {
+    await fastify.listen({ port: 3000, host: '0.0.0.0' });
+  }
+  catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
 }
-catch (err) {
-  fastify.log.error(err);
-  process.exit(1);
+else {
+  try {
+    await fastify.listen({ port: 443, host: '0.0.0.0' });
+  }
+  catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
 }
