@@ -25,7 +25,7 @@ export default class Device {
     let tempFactor : Array<number>;
     let humidFactor : Array<number>;
     if (this.weather == 0) {
-      tempFactor = [-1, 1.6]
+      tempFactor = [-1, 1.4]
       humidFactor = [-1.2, 1]
     }
     else if (this.weather == 1) {
@@ -41,7 +41,7 @@ export default class Device {
       humidFactor = [- 1.2, 1.2]
     }
     this.temp = Math.min(Math.max(this.temp + getRand(tempFactor[0]!, tempFactor[1]!), 23), 40);
-    this.humid = Math.min(Math.max(this.humid + getRand(humidFactor[0]!, humidFactor[1]!), 15), 95);
+    this.humid = Math.min(Math.max(this.humid + getRand(humidFactor[0]!, humidFactor[1]!) * 2, 15), 95);
     if (Math.random() <= 0.2) {
       this.weather = Math.floor(getRand(0,4))
     }
